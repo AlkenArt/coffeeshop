@@ -12,9 +12,7 @@ public interface AccountService {
 
 	String modifyUser(UserInfo userInfo, String currentUser);
 
-	UserInfo getUser(String userId, String password);
-
-	UserInfo getCurrentUser(String userName);
+	UserInfo getUser(String userName);
 	
 	Set<String> getAllRoles();
 

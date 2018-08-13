@@ -35,7 +35,7 @@ public class AccountController {
 	public UserInfo getCurrentUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userName = auth.getName();
-		return accountService.getCurrentUser(userName);
+		return accountService.getUser(userName);
 	}
 
 	@RequestMapping(value = "/getAllRoles", method = RequestMethod.GET)

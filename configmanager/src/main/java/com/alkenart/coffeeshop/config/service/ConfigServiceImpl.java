@@ -1,26 +1,68 @@
 package com.alkenart.coffeeshop.config.service;
 
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+@Configuration
+@PropertySource(value = "classpath:hazelcast-server.properties")
+public class ConfigServiceImpl {
 
-import com.alkenart.coffeeshop.config.Config;
-import com.alkenart.coffeeshop.config.ConfigConstants;
-import com.alkenart.coffeeshop.config.ConfigService;
+	@Value("${hazelcast.persistence.dir}")
+	private String hazelcastPersistenceDir;
 
-@Service
-public class ConfigServiceImpl implements ConfigService, ConfigConstants {
-	
-	@Autowired
-	Config config;
-	
-	public ConfigServiceImpl(){
+	@Value("${hazelcast.persistence.report.data.ttl:30}")
+	private String hazelcastAPIDataPersistenceTTL;
+
+	@Value("${hazelcast.instance.members:[127.0.0.1]}")
+	private String[] hazelcastMembers;
+
+	@Value("${hazelcast.instance.numbers:4}")
+	private int HCInstanceNumbers;
+
+	@Value("${hazelcast.instance.baseport:5701}")
+	private int HCInstanceBasePort;
+
+	public int getHCInstanceBasePort() {
+		return HCInstanceBasePort;
 	}
 
-	@Override
-	public String getProperty(String paramName) {
-		Map<String, String> context = config.getAllProperties();
-		return context.get(paramName);
+	public void setHCInstanceBasePort(int hCInstanceBasePort) {
+		HCInstanceBasePort = hCInstanceBasePort;
+	}
+
+	public int getHCInstanceNumbers() {
+		return HCInstanceNumbers;
+	}
+
+	public void setHCInstanceNumbers(int hCInstanceNumbers) {
+		HCInstanceNumbers = hCInstanceNumbers;
+	}
+
+	public String[] getHazelcastMembers() {
+		return hazelcastMembers;
+	}
+
+	public void setHazelcastMembers(String[] hazelcastMembers) {
+		this.hazelcastMembers = hazelcastMembers;
+	}
+
+	public String getHazelcastPersistenceDir() {
+		return hazelcastPersistenceDir;
+	}
+
+	public void setHazelcastPersistenceDir(String hazelcastPersistenceDir) {
+		this.hazelcastPersistenceDir = hazelcastPersistenceDir;
+	}
+
+	public String getHazelcastAPIDataPersistenceTTL() {
+		return hazelcastAPIDataPersistenceTTL;
+	}
+
+	public void setHazelcastAPIDataPersistenceTTL(String hazelcastAPIDataPersistenceTTL) {
+		this.hazelcastAPIDataPersistenceTTL = hazelcastAPIDataPersistenceTTL;
+	}
+
+	public ConfigServiceImpl() {
 	}
 }

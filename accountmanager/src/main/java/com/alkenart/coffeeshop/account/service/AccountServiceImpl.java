@@ -29,9 +29,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public String addUser(UserInfo userInfo) {
-
 		String result = RESULT;
-
 		if (null == userInfo) {
 			result += ACC_INVALID_DATA;
 			return result;
@@ -52,14 +50,6 @@ public class AccountServiceImpl implements AccountService {
 		userRepo.save(user);
 		result += SUCCESS;
 		return result;
-	}
-
-	@Override
-	public UserInfo getUser(String userId, String password) {
-		User user = userRepo.findByEmailAndPassword(userId, password);
-		UserInfo userInfo = new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(),
-				Role.valueOf(user.getRole()), new Date(), new Date());
-		return userInfo;
 	}
 
 	@Override
@@ -119,7 +109,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public UserInfo getCurrentUser(String userName) {
+	public UserInfo getUser(String userName) {
 		User user = userRepo.findByEmail(userName);
 		UserInfo userInfo = new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(),
 				Role.valueOf(user.getRole()), new Date(), new Date());
