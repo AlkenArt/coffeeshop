@@ -2,11 +2,8 @@ package com.alkenart.coffeeshop.account.model;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
-
 public class User {
 
-	@Id
 	private String id;
 
 	private String email;
