@@ -1,7 +1,8 @@
 package com.alkenart.coffeeshop.account;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.alkenart.coffeeshop.util.TimeUtil;
 
 public class UserInfo {
 
@@ -11,7 +12,7 @@ public class UserInfo {
 	private String password;
 	private Role role;
 	private String createDate;
-	private String lastUpdateDate;
+	private String lastLoginDate;
 
 	public UserInfo() {
 	}
@@ -24,8 +25,8 @@ public class UserInfo {
 		this.lastName = lastName;
 		this.password = password;
 
-		this.setCreateDate(convertToString(createDate));
-		this.setLastUpdateDate(convertToString(lastUpdateDate));
+		this.setCreateDate(TimeUtil.toString(createDate));
+		this.setLastLoginDate(TimeUtil.toString(lastUpdateDate));
 		this.setRole(role);
 	}
 
@@ -65,25 +66,11 @@ public class UserInfo {
 		this.createDate = createDate;
 	}
 
-	public String getLastUpdateDate() {
-		return lastUpdateDate;
+	public String getLastLoginDate() {
+		return lastLoginDate;
 	}
 
-	public void setLastUpdateDate(String lastUpdateDate) {
-		this.lastUpdateDate = lastUpdateDate;
-	}
-
-	private static String convertToString(Date value) {
-
-		String sdf = "";
-
-		try {
-
-			sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(value);
-			return sdf;
-		} catch (Exception e) {
-
-		}
-		return sdf;
+	public void setLastLoginDate(String lastUpdateDate) {
+		this.lastLoginDate = lastUpdateDate;
 	}
 }

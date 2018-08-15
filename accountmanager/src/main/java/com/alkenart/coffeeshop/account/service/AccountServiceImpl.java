@@ -12,6 +12,7 @@ import com.alkenart.coffeeshop.account.Role;
 import com.alkenart.coffeeshop.account.UserInfo;
 import com.alkenart.coffeeshop.account.dao.UserRepo;
 import com.alkenart.coffeeshop.account.model.User;
+import com.alkenart.coffeeshop.util.TimeUtil;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -87,7 +88,20 @@ public class AccountServiceImpl implements AccountService {
 		user.setPassword(userInfo.getPassword());
 		user.setFirstName(userInfo.getFirstName());
 		user.setLastName(userInfo.getLastName());
-		// user.setLastUpdateDate(new Date());
+		user.setLastUpdateDate(TimeUtil.toDate(userInfo.getLastLoginDate()));
+		userRepo.save(user);
+		result += SUCCESS;
+		return result;
+	}
+
+	@Override
+	public String save(UserInfo userInfo) {
+		String result = RESULT;
+		User user = userRepo.findByEmail(userInfo.getUserId());
+		user = new User(userInfo.getUserId(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword(),
+				userInfo.getRole().toString());
+		user.setCreateDate(TimeUtil.toDate(userInfo.getCreateDate()));
+		user.setLastUpdateDate(TimeUtil.toDate(userInfo.getLastLoginDate()));
 		userRepo.save(user);
 		result += SUCCESS;
 		return result;
@@ -102,7 +116,7 @@ public class AccountServiceImpl implements AccountService {
 		}
 		for (User user : users) {
 			UserInfo userInfo = new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(),
-					user.getPassword(), Role.valueOf(user.getRole()), new Date(), new Date());
+					user.getPassword(), Role.valueOf(user.getRole()), user.getCreateDate(), user.getLastUpdateDate());
 			retVal.add(userInfo);
 		}
 		return retVal;
@@ -112,7 +126,7 @@ public class AccountServiceImpl implements AccountService {
 	public UserInfo getUser(String userName) {
 		User user = userRepo.findByEmail(userName);
 		UserInfo userInfo = new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(),
-				Role.valueOf(user.getRole()), new Date(), new Date());
+				Role.valueOf(user.getRole()), user.getCreateDate(), user.getLastUpdateDate());
 		return userInfo;
 	}
 
@@ -128,6 +142,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void init() {
+//		userRepo.deleteAll();
 		UserInfo userInfo = new UserInfo("staffuser@alkenart.com", "Staff", "User", "password", Role.STAFF, new Date(),
 				new Date());
 		UserInfo userInfo1 = new UserInfo("lokesh@alkenart.com", "Lokesh", "Nayak", "lokesh", Role.ADMIN, new Date(),

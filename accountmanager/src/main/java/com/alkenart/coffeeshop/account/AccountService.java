@@ -17,4 +17,6 @@ public interface AccountService {
 	Set<String> getAllRoles();
 
 	void init();
+
+	String save(UserInfo userInfo);
 }
