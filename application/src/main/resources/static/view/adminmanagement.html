@@ -29,7 +29,7 @@
 								<span class="glyphicon glyphicon-user"></span>&nbsp;Add New User
 							</button>
 							<modal visible="showAddUserModal" data-backdrop="static" data-keyboard="false"
-								style="background:-webkit-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);">
+								style="background:-webkit-linear-gradient(90deg, #3A2306 0%, #3A2306 100%);">
 								<div class="modal-header" style="padding: 0 2px 8px 0px;">
 									<button type="button" class="close" data-dismiss="modal" ng-click = "closeAddUserModal()"
 										aria-hidden="true" style="color: #000; font-size: 40px;" >&times;</button>
@@ -115,12 +115,12 @@
 									<td>{{user.createDate}}</td>
 									<td>{{user.lastLoginDate}}</td>
 									<td>
-										<button ng-click="openEditModal(user)" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Edit User"
-											style="background: #4eb2d5; color: #fff;" ng-disabled="user.role=='ADMIN'&&user.userId!=currentUser.userId">
+										<button ng-click="openEditModal(user)" class="btn btn-sm btn-theme" data-toggle="tooltip" data-placement="top" title="Edit User"
+											style="color: #fff;" ng-disabled="user.role=='ADMIN'&&user.userId!=currentUser.userId">
 											<i class="fa fa-pencil-square-o"></i>
 										</button> 
 										<modal  visible="user.editModal" data-backdrop="static" data-keyboard="false"
-											style="background:-webkit-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);">
+											style="background:-webkit-linear-gradient(90deg, #3A2306 0%, #3A2306 100%);">
 											<div class="modal-header" style="padding: 0 2px 8px 0px;">
 												<button type="button" class="close" ng-click = "editPopUpClose(user)"
 													aria-hidden="true" style="color: #000; font-size: 40px;">&times;</button>
@@ -130,8 +130,8 @@
 										<div ng-include="editUser"></div>
 										</modal>
 										
-										<button ng-click="openDeleteModal(user)" class="btn btn-sm btn-theme" data-toggle="tooltip" data-placement="top" title="Delete User"
-											style="color: #fff;" ng-disabled="user.role=='ADMIN'">
+										<button ng-click="openDeleteModal(user)" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Delete User"
+											style="color: #fff; background-color: red" ng-disabled="user.role=='ADMIN'">
 											<i class="fa fa-trash-o"></i>
 										</button> 
 										<modal  visible="user.deleteModal" data-backdrop="static" data-keyboard="false"

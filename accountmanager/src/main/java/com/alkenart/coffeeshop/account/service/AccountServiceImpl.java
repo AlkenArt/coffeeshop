@@ -143,9 +143,9 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void init() {
 //		userRepo.deleteAll();
-		UserInfo userInfo = new UserInfo("staffuser@alkenart.com", "Staff", "User", "password", Role.STAFF, new Date(),
+		UserInfo userInfo = new UserInfo("staff@coffeeshop.com", "Staff", "User", "password", Role.STAFF, new Date(),
 				new Date());
-		UserInfo userInfo1 = new UserInfo("lokesh@alkenart.com", "Lokesh", "Nayak", "lokesh", Role.ADMIN, new Date(),
+		UserInfo userInfo1 = new UserInfo("admin@coffeeshop.com", "Lokesh", "Nayak", "lokesh", Role.ADMIN, new Date(),
 				new Date());
 		addUser(userInfo);
 		addUser(userInfo1);
