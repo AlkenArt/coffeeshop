@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html >
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coffee-Shop</title>
+  <link rel="shortcut icon" href="images/ico/favicon.ico">
+  <link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div>
+	<h4 class="text-center">Please Check the URL <span>You might be trying to access a wrong URL</span></h4>
+	<h4 class="text-center">Go to the correct URL <a id="loginUrl" href=""></a> to login again</h4>
+	<script>
+	var url = window.location.href;
+	var arr = url.split("/");
+	var result = arr[0] + "//" + arr[2] +"/"+arr[3]+"/login";
+	document.getElementById("loginUrl").innerHTML = result;
+	document.getElementById("loginUrl").href = result;
+	</script>
+</div>
+<div class="hidden-xs" style="position: fixed; bottom: 0;width: 100%; color: #fff;">
+	<div style="float: left;">Coffee-Shop Mgmt v-1_0_0</div>
+	<div style="float: right;">&copy; AlkenArts 2018 All Rights Reserved</div>
+</div>
+<div class="visible-xs text-center" style="position: fixed; bottom: 0;width: 100%; color: #fff;">
+	<div>Coffee-Shop Mgmt v-1_0_0</div>
+	<div>&copy; AlkenArts 2018 All Rights Reserved</div>
+</div>
+</body>
+</html>

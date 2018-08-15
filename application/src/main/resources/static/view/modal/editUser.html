@@ -1,0 +1,94 @@
+<div ng-controller="editUserCtrl">
+	<form role="form" name="updateForm">
+		<div>
+			<h4 align="left" ng-show="modifyUserError" style="color: red;">{{modifyUserResult}}</h4>
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="text"
+					class="form-control" id="email" name="userId"
+					ng-model="user.userId" Placeholder="{{user.userId}"
+					value="{{user.userId}" disabled />
+				<div></div>
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label> <input id="password"
+					name="password" type="password" ng-model="password"
+					class="form-control" Placeholder="Enter Password"
+					onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 1 character' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;">
+			</div>
+
+			<div class="form-group">
+				<label for="password"> Verify Password:</label> <input
+					id="password_two" name="password_two" type="password" ng-model="password1"
+					class="form-control" placeholder="Verify Password"
+					onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" >
+
+			</div>
+			
+			<div class="form-group">
+				<div>
+					<label for="password">First Name:</label> <input class="form-control"
+						type="text" ng-model="user.firstName" placeholder="{{user.firstName}}"
+						value="{{user.firstName}}"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div>
+					<label for="password">Last Name:</label> <input class="form-control"
+						type="text" ng-model="user.lastName" placeholder="{{user.lastName}}"
+						value="{{user.lastName}}"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div>
+					<label for="password">Role:</label> <input class="form-control"
+						type="text" ng-model="user.role" placeholder="{{user.role}}"
+						value="{{user.role}}" disabled />
+				</div>
+			</div>
+			<div class="form-group">
+				<div>
+					<div class="col-lg-12 col-sm-12 col-md-12" style="padding: 0px;">
+						<label for="realm">Groups*:</label>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6"
+							style="padding: 0px;">
+							<select multiple ng-model="available" class="form-control"
+								style="width: 100%;">
+
+								<option ng-repeat="availablerealm in remainingEditableRealms"
+									ng-click="selectEditableGroup(availablerealm)"
+									value="{{availablerealm.groupName}}" ng-disabled="user.role=='ADMIN'">{{availablerealm.groupDesc}}</option>
+							</select>
+
+						</div>
+						<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6"
+							style="padding-right: 0px;">
+							<select multiple name="realm" ng-model="selected"
+								class="form-control" id="select" style="width: 100%;">
+								<option ng-repeat="group in selectedEditableRealms"
+									ng-click="removeEditableGroup(group)"
+									value="{{group.groupName}}" ng-disabled="user.role=='ADMIN'">{{group.groupDesc}}</option>
+								
+							</select>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group" style="text-align:center !important;margin-top:3em;">
+				<br /><span style="color: red; height: 30px; margin-top: 10px" ng-show="updateError">{{updateErrorMsg}}</span><br />
+				<button type="submit" class="btn btn-default"
+					ng-click="updateUser(user, password, password1, selectedEditableRealms)"
+					style="background: #45aed6; color: #fff; border: 0; margin-top: 10px;">
+					<i class="fa fa-pencil-square-o"></i>&nbsp;Update
+				</button>
+				<button class="btn btn-warning" ng-click = "editPopUpClose(user)" style="color: #fff; border: 0;margin-top: 10px;"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;Cancel</button>
+			</div>
+		</div>
+
+	</form>
+</div>

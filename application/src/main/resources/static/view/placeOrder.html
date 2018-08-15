@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div ng-include="header"></div>
+	<section id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class=" he2 section-title text-center wow fadeInDown">Place <span>Order</span></h2>
+                <p class="text-center wow fadeInDown">Please provide the details and click the "Order" button to place the order for the selected category of Coffee.</p>
+            </div>
+            <div class="row valign" style="margin-bottom: 40px;">
+                <div class="hidden-xs col-sm-6 wow fadeInLeft" align="center">
+                    <img class="img-responsive" src="images/bg.jpg" alt="">
+                </div>
+                <div class="col-sm-6" style="color: #000;" ng-controller="placeOrderCtrl">
+					<form class="box">
+						<div class="text-center">
+							<h4 class="he4 media-heading">Order Placement</h4>
+							<p></p>
+						</div>
+
+						<div id="form" class="row form-inline">
+							<div id="loginFormLabel" class="col-md-5 col-sm-6">
+								<label class="control-label"
+									style="margin-top: 5px; font-weight: 500;"> Coffee
+									Type*:</label>
+							</div>
+							<div id="loginFormTxtField" class="col-md-6 col-sm-6">
+								<select name="duration" class="form-control"
+									ng-model="orderInfo.order" ng-value="orderInfo.order" style="width: 100%;">
+									<option ng-repeat="category in allCategories | orderBy"
+										value="{{category}}">{{category}}</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="form" class="row form-inline">
+							<div id="loginFormLabel" class="col-md-5 col-sm-6">
+								<label class="control-label"
+									style="margin-top: 5px; font-weight: 500;"> Quantity*:</label>
+							</div>
+							<div id="loginFormTxtField" class="col-md-6 col-sm-6">
+								<input type="number" min=1 max=7 ng-model="orderInfo.quantity" ng-change="calculatePrice(orderInfo.quantity)"
+									name="quantity" placeholder="Enter Quantity*"
+									class="form-control" style="width: 100%;">
+							</div>
+						</div>
+						
+						<div id="form" class="row form-inline">
+							<div id="loginFormLabel" class="col-md-5 col-sm-6">
+								<label class="control-label"
+									style="margin-top: 5px; font-weight: 500;"> Total Price (INR):</label>
+							</div>
+							<div id="loginFormTxtField" class="col-md-6 col-sm-6">
+								<input type="number" min=0 max=10000 ng-model="orderInfo.price"
+									name="price" placeholder="Total Price"
+									class="form-control" style="width: 100%;" disabled>
+							</div>
+						</div>
+
+						<div id="form" class="row form-inline">
+							<div id="loginFormLabel" class="col-md-5 col-sm-6">
+								<label class="control-label"
+									style="margin-top: 5px; font-weight: 500;"> Customer
+									Name*:</label>
+							</div>
+							<div id="loginFormTxtField" class="col-md-6 col-sm-6">
+								<input type="text" maxlength="6"
+									ng-model="orderInfo.customerName" name="customerName"
+									placeholder="Enter Customer name*" class="form-control"
+									style="width: 100%;">
+							</div>
+						</div>
+
+						<div ng-show="orderError" style="color: red;">{{orderErrorMsg}}</div>
+
+						<div id="form" class="row form-inline " align="center">
+							<span id="ecode" class="error"
+								style="color: red; display: inline-block;"></span> <br />
+							<button id="btn_signin" type="submit" value="Order"
+								class="btn btn-theme" ng-click="placeOrder(orderInfo)"
+								style="border-radius: 0px;">
+								<b><i class="fa fa-coffee"></i> Order</b>
+							</button>
+						</div>
+					</form>
+				</div>
+              </div>
+            </div>
+    </section><!-- /#features -->
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+    <div ng-include="footer"></div>
+</body>
+</html>

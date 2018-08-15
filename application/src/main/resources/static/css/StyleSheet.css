@@ -1,0 +1,109 @@
+table tr th{
+	text-align: center;
+}
+.he2 {
+	color: #0e646a;
+	font-size: 26px;
+	font-weight: normal;
+}
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+/*BOXES*/
+.box {
+	border: 4px solid #e0e2e4;
+	padding: 8px 18px;
+	text-align: center;
+}
+
+#loginFormTxtField {
+	padding-left: 10px;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 250px) {
+	#loginFormLabel {
+		padding-right: 0px;
+		text-align: left;
+	}
+	#loginFormTxtField {
+		margin-bottom: 0px;
+	}
+	.he4 {
+		font-size: 14px;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.he2 {
+		font-size: 18px;
+	}
+}
+
+@media only screen and (min-width: 250px) and (max-width: 414px) {
+	#loginFormLabel {
+		padding-right: 0px;
+		text-align: left;
+	}
+	#loginFormTxtField {
+		margin-bottom: 0px;
+	}
+	.he4 {
+		font-size: 16px;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.he2 {
+		font-size: 20px;
+	}
+}
+
+@media only screen and (min-width: 415px) and (max-width: 767px) {
+	#loginFormLabel {
+		padding-right: 0px;
+		text-align: left;
+	}
+	#loginFormTxtField {
+		margin-bottom: 0px;
+	}
+	.he2 {
+		font-size: 24px;
+	}
+	.he4 {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	#form {
+		margin: 0px 16%;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	#loginFormLabel {
+		padding-right: 0px;
+		text-align: right;
+	}
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1023px) {
+	#loginFormLabel {
+		padding-right: 0px;
+		text-align: right;
+	}
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1399px) {
+	#loginFormLabel {
+		padding-right: 0px;
+		text-align: right;
+	}
+}
+
+@media only screen and (min-width: 1400px) {
+	#loginFormLabel {
+		padding-right: 0px;
+		text-align: right;
+	}
+}

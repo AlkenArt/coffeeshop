@@ -1,0 +1,92 @@
+<style>
+.form-group {
+	margin-bottom: 5px;
+}
+</style>
+<div ng-controller="addUserCtrl">
+	<form role="form" name="form">
+		<div>
+			<h4 ng-show="addUserError" style="color: red;">{{result}}</h4>
+			<div class="form-group">
+				<label for="email">Email*:</label> <input type="email"
+					class="form-control" id="email" name="email"
+					Placeholder="Enter Email" ng-model="email" required
+					pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" />
+				<div></div>
+			</div>
+			<div class="form-group">
+				<label for="password">Password*:</label> <input id="password"
+					name="password" type="password" ng-model="password"
+					class="form-control" Placeholder="Enter Password" required
+					onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 1 character' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;">
+			</div>
+
+			<div class="form-group">
+				<label for="password"> Verify Password*:</label> <input
+					id="password_two" name="password_two" type="password"
+					class="form-control" placeholder="Verify Password" required
+					onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
+
+			</div>
+
+			<div class="form-group">
+				<label for="password">First Name*:</label> <input
+					ng-model="firstname" name="firstname" type="text"
+					class="form-control" placeholder="Enter FirstName" required>
+
+			</div>
+			<div class="form-group">
+				<label for="password">Last Name*:</label> <input name="lasttname"
+					type="text" class="form-control" ng-model="lastname"
+					placeholder="Enter LastName" required>
+
+			</div>
+
+			<div class="form-group">
+				<div>
+					<label for="password">Role*:</label> <select ng-model="role"
+						class="form-control" ng-change="changeGroupSelection(role)">
+						<option ng-repeat="roleValue in roles" value="{{roleValue}}">{{roleValue}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div>
+					<div class="col-lg-12 col-sm-12 col-md-12" style="padding: 0px;">
+						<label for="realm">Groups*:</label>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-6" style="padding: 0px;">
+							<select multiple ng-model="available" class="form-control"
+								style="width: 100%;">
+								<option ng-repeat="availablerealm in remainingRealms"
+									ng-click="selectGroup(availablerealm)"
+									value="{{availablerealm.groupName}}"
+									ng-disabled="role=='ADMIN'">{{availablerealm.groupDesc}}</option>
+							</select>
+
+						</div>
+						<div class="col-xs-6" style="padding-right: 0px;">
+							<select multiple name="selected" ng-model="selected"
+								class="form-control" id="select" style="width: 100%;">
+
+								<option ng-repeat="selectedrealm in selectedrealms"
+									ng-click="removeGroup(selectedrealm)"
+									value="{{selectedrealm.groupName}}" ng-disabled="role=='ADMIN'">{{selectedrealm.groupDesc}}</option>
+							</select> <span id="demo" style="color: red;"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="text-align: center;" class="row">
+			<br /> <span style="color: red; height: 30px; margin-top: 10px"
+				id="demo"></span><br />
+			<button type="submit" class="btn btn-default"
+				style="margin-top: 20px; background: #2caab3; color: #fff;"
+				ng-click="addUser(email, password,firstname,lastname,role,selectedrealms)">Add
+			</button>
+
+		</div>
+	</form>
+</div>

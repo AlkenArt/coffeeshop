@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div ng-include="header"></div>
+	<section id="features">
+		<div class="container">
+			<div class="section-header">
+				<h2 class="he2  section-title text-center wow fadeInDown">
+					User guide for <span>Guest Internet Service</span>
+				</h2>
+			</div>
+			<div ng-init="selection='pHelp'">
+				<div class="row" style="color: #F86F0A;">
+					<label style="font-weight: 400; font-size:18px; cursor: pointer;"><input type="radio" ng-model="selection" value='pHelp'> Connectivity Help</label>
+					<label style="font-weight: 400; font-size:18px; cursor: pointer;"><input type="radio" ng-model="selection" value='faq'> FAQ</label>
+				</div>
+				<div class="row">
+					<span ng-if="selection=='pHelp'" ng-include = "'view/help/connectivityHelp.html'"></span>
+					<span ng-if="selection=='faq'" ng-include = "'view/help/faq.html'"></span>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /#features -->
+	<div ng-include="footer"></div>
+</body>
+</html>

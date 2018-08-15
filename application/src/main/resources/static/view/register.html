@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unified Search</title>
+<link rel="shortcut icon" href="images/ico/favicon.ico">
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="angular/angular.min.js"></script>
+<script src="angular/angular-route.js"></script>
+<script src="angular/angular-spinner.min.js"></script>
+<script src="angular/angular-loading-spinner.js"></script>
+<script src="angular/spin.min.js"></script>
+<script src="angular/mask.min.js"></script>
+<script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/controllers/registerCtrl.js"></script>
+</head>
+<body ng-app="register" style="padding-top:25px">
+	<!--login modal-->
+	<div ng-controller="registerCtrl" id="loginModal"
+		class="container show" tabindex="" role="dialog" aria-hidden="true"
+		style="overflow: hidden">
+		<div class="card-container card">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<span>Create Account</span>
+				</h4>
+			</div>
+			<div ng-if="!updateSuccessful" class="panel-body"
+				style="border: 1px solid #cccccc;">
+				<p align="justify"></p>
+				<form role="form" name="updateForm">
+					<div class="form-group">
+						<label for="email">Username:</label> <input type="text"
+							class="form-control" id="email" name="username"
+							ng-model="username" Placeholder="Email" required
+							pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" />
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label> <input id="newPassword"
+							name="newPassword" type="password" ng-model="pwd.newPass"
+							class="form-control" ng-class="{'hasError':newPassError}"
+							placeholder="password*">
+					</div>
+					<div class="form-group">
+						<label for="password">Confirm Password:</label> <input
+							id="confirmPassword" name="confirmPassword" type="password"
+							ng-model="pwd.confirmPass" class="form-control"
+							ng-class="{'hasError':confirmPassError}"
+							placeholder="Confirm password*">
+					</div>
+					<div class="form-group">
+						<label for="name">First Name:</label> <input
+							ng-model="firstname" name="firstname" type="text"
+							class="form-control" placeholder="Enter FirstName*" required>
+
+					</div>
+					<div class="form-group">
+						<label for="name">Last Name:</label> <input name="lasttname"
+							type="text" class="form-control" ng-model="lastname"
+							placeholder="Enter LastName*" required>
+
+					</div>
+					<div class="form-group text-center">
+						<p ng-show="errorMsg" style="color: red;">{{errorMsg}}</p>
+						<button type="submit" class="btn btn-theme"
+							ng-click="addUser(username, pwd.newPass, pwd.confirmPass, firstname, lastname)">
+							<i class="fa fa-pencil-square-o"></i>&nbsp;Update
+						</button>
+						<a type="submit" class="btn btn-warning" href="login"> <i
+							class="fa fa-pencil-square-o"></i>&nbsp;Cancel
+						</a>
+					</div>
+				</form>
+				<p align="justify">Ensure the password you have selected,
+					meets the below password rules:</p>
+				<ul>
+					<li>New password is case-sensitive.</li>
+					<li>The new password must be 8 to 16 characters long and must
+						contain at least 1 numeric characters.</li>
+					<li>The new password contain characters from three of the
+						following four categories:</li>
+					<ul>
+						<li>English uppercase letters (A through Z)</li>
+						<li>English lowercase letters (a through z)</li>
+						<li>Base 10 digits (0 through 9)</li>
+						<li>Non-alphbetic characters (for example, !, @, #, $))</li>
+					</ul>
+				</ul>
+			</div>
+			<div ng-if="updateSuccessful">
+				<div class="form-group text-center">
+					<h4 style="color: green;">
+						Account Created !!<br> <br>Please <a
+							type="submit" class="btn-link" href="login"> <i
+							class="fa fa-pencil-square-o"></i>Click here
+						</a> to login.
+					</h4>
+				</div>
+			</div>
+		</div>
+		<span us-spinner="{radius:30, width:8, length: 16}"></span>
+		<div ng-include="footer"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	var ErrorService = [ {
+		PasswordErrors : {
+			"newPassEmpty" : "Your new password is missing or incorrect",
+			"confirmPassEmpty" : "Your confirm password is missing or incorrect",
+			"newPassPolicyError" : "The new password does not meet the password policy requirements",
+			"newAndConfirmNotSame" : "The confirm password must match the new password entry"
+		}
+	} ]
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coffee-Shop</title>
+<link rel="shortcut icon" href="images/ico/favicon.ico">
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<!--login modal-->
+	<div id="loginModal" class="modal show" tabindex="" role="dialog"
+		aria-hidden="true" style="overflow: hidden">
+		<div class="modal-dialog  ">
+			<div class="modal-content">
+				<div class="modal-header" align="center">
+					<div class="login-logo">
+						<img src="images/coffeeshop-logo.png" class="img-responsive"
+							alt="Coffeeshop" />
+					</div>
+					<h2 style="margin-top: 5px;">Coffee Shop Order Management</h2>
+				</div>
+				<div class="modal-body row" align="center">
+					<form class="form col-sm-offset-3 col-sm-6" action="login"
+						method="post">
+						<div class="form-group">
+							<input type="email" placeholder="Username*" name="username"
+								id="username" class="form-control input-sm chat-input" required>
+						</div>
+						<div class="form-group">
+							<input type="password" placeholder="Password*" name="password"
+								id="password" class="form-control input-sm chat-input" required>
+						</div>
+						<p class="error" id="error"></p>
+						<div class="form-group">
+							<button class="btn btn-theme" type="submit">
+								<span class="glyphicon glyphicon-user"></span> Login
+							</button>
+							<a href="/register" class="btn btn-warning" type="button">
+								<span class="glyphicon glyphicon-plus"></span> Create An Account
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hidden-xs"
+		style="position: fixed; bottom: 0; width: 100%; color: #fff;">
+		<div style="float: left;">Coffee-Shop Mgmt v-1_0_0</div>
+		<div style="float: right;">&copy; AlkenArts 2018 All Rights
+			Reserved</div>
+	</div>
+	<div class="visible-xs text-center"
+		style="position: fixed; bottom: 0; width: 100%; color: #fff;">
+		<div>Coffee-Shop Mgmt v-1_0_0</div>
+		<div>&copy; AlkenArts 2018 All Rights Reserved</div>
+	</div>
+	<script>
+		var url = window.location.href;
+		if (url.split("?")[1] == "error")
+			document.getElementById("error").innerHTML = "Username or password is invalid !";
+	</script>
+</body>
+</html>
