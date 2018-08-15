@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.alkenart.coffeeshop.account.dao.OrderRepo;
 import com.alkenart.coffeeshop.account.model.Order;
+import com.alkenart.coffeeshop.config.ApplicationConstants;
 import com.alkenart.coffeeshop.order.OrderCategory;
 import com.alkenart.coffeeshop.order.OrderFailedException;
 import com.alkenart.coffeeshop.order.OrderInfo;
@@ -46,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
 		String orderId = order.getOrder().substring(0, 3).toUpperCase() + "_" + order.getCustomerName().toUpperCase()
 				+ "_" + order.getQuantity();
 		order.setOrderId(orderId);
-
+		order.setStatus(ApplicationConstants.QUEUED);
 		Date date = new Date();
 		order.setOrderDate(date);
 		try {
@@ -102,7 +103,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
+//		orderRepo.deleteAll();
 	}
 
 	@Override
