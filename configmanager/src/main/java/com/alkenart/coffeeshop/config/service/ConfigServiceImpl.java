@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource(value = "classpath:hazelcast-server.properties")
+@PropertySource(value = "classpath:application.properties")
 public class ConfigServiceImpl {
 
 	@Value("${hazelcast.persistence.dir}")
@@ -22,6 +22,28 @@ public class ConfigServiceImpl {
 
 	@Value("${hazelcast.instance.baseport:5701}")
 	private int HCInstanceBasePort;
+
+	@Value("${TOKEN.header}")
+	public String authHeader;
+
+	@Value("${TOKEN.expiration}")
+	public String expiration;
+
+	public String getAuthHeader() {
+		return authHeader;
+	}
+
+	public void setAuthHeader(String authHeader) {
+		this.authHeader = authHeader;
+	}
+
+	public String getExpiration() {
+		return expiration;
+	}
+
+	public void setExpiration(String expiration) {
+		this.expiration = expiration;
+	}
 
 	public int getHCInstanceBasePort() {
 		return HCInstanceBasePort;
